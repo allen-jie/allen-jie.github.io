@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://allen-jie.github.io">
-  <title>Archives: 2018/6 | Allen丶</title>
+  <title>装饰器五部曲 | Allen丶</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="技术，人生百态">
-<meta name="keywords" content="Linux,Python,Html,CSS,JavaScript,jQuery,码农,诗和远方">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Allen丶">
-<meta property="og:url" content="https://allen-jie.github.io/archives/2018/06/index.html">
+  <meta name="description" content="装饰器  装饰器就是闭包函数的一种应用场景  为什么要用装饰器  开放封闭原则：对修改封闭，对扩展开放  什么是装饰器  装饰器-他人的器具，本身可以是任意可调用对象，被装饰者也可以是任意可调用对象。 强调-装饰器的原则：1、不修改被装饰对象的源代码   2、不修改被装饰对象的调用方式 装饰器的目标：在遵循1和2的前提下，为被装饰对象添加上新的功能   装饰器的使用  无参装饰器  import">
+<meta name="keywords" content="Python,装饰器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="装饰器五部曲">
+<meta property="og:url" content="https://allen-jie.github.io/2018/06/05/装饰器五部曲/index.html">
 <meta property="og:site_name" content="Allen丶">
-<meta property="og:description" content="技术，人生百态">
+<meta property="og:description" content="装饰器  装饰器就是闭包函数的一种应用场景  为什么要用装饰器  开放封闭原则：对修改封闭，对扩展开放  什么是装饰器  装饰器-他人的器具，本身可以是任意可调用对象，被装饰者也可以是任意可调用对象。 强调-装饰器的原则：1、不修改被装饰对象的源代码   2、不修改被装饰对象的调用方式 装饰器的目标：在遵循1和2的前提下，为被装饰对象添加上新的功能   装饰器的使用  无参装饰器  import">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-05T07:06:53.913Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Allen丶">
-<meta name="twitter:description" content="技术，人生百态">
+<meta name="twitter:title" content="装饰器五部曲">
+<meta name="twitter:description" content="装饰器  装饰器就是闭包函数的一种应用场景  为什么要用装饰器  开放封闭原则：对修改封闭，对扩展开放  什么是装饰器  装饰器-他人的器具，本身可以是任意可调用对象，被装饰者也可以是任意可调用对象。 强调-装饰器的原则：1、不修改被装饰对象的源代码   2、不修改被装饰对象的调用方式 装饰器的目标：在遵循1和2的前提下，为被装饰对象添加上新的功能   装饰器的使用  无参装饰器  import">
   
     <link rel="alternative" href="/atom.xml" title="Allen丶" type="application/atom+xml">
   
@@ -158,36 +159,146 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-装饰器五部曲" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/05/装饰器五部曲/" class="archive-article-date">
-  	<time datetime="2018-06-05T07:05:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/05/装饰器五部曲/">装饰器五部曲</a>
+    <h1 class="article-title" itemprop="name">
+      装饰器五部曲
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/05/装饰器五部曲/" class="archive-article-date">
+  	<time datetime="2018-06-05T07:05:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="toc_0">装饰器</h1>
+
+<p>装饰器就是闭包函数的一种应用场景</p>
+
+<h2 id="toc_1">为什么要用装饰器</h2>
+
+<p><code>开放封闭原则：对修改封闭，对扩展开放</code></p>
+
+<h2 id="toc_2">什么是装饰器</h2>
+
+<pre><code>装饰器-他人的器具，本身可以是任意可调用对象，被装饰者也可以是任意可调用对象。
+强调-装饰器的原则：1、不修改被装饰对象的源代码   2、不修改被装饰对象的调用方式
+装饰器的目标：在遵循1和2的前提下，为被装饰对象添加上新的功能
+</code></pre>
+
+<h2 id="toc_3">装饰器的使用</h2>
+
+<p>无参装饰器</p>
+
+<pre><code>import time
+def timmer(func):
+    def wrapper(*args,**kwargs):
+        start_time=time.time()
+        res=func(*args,**kwargs)
+        stop_time=time.time()
+        print(&#39;run time is %s&#39; %(stop_time-start_time))
+        return res
+    return wrapper
+
+@timmer
+def foo():
+    time.sleep(3)
+    print(&#39;from foo&#39;)
+foo()
+</code></pre>
+
+<p>有参装饰器</p>
+
+<pre><code>def auth(driver=&#39;file&#39;):
+    def auth2(func):
+        def wrapper(*args,**kwargs):
+            name=input(&quot;user: &quot;)
+            passwd=input(&#39;passwd: &#39;)
+
+            if driver == &#39;file&#39;:
+                if name==&#39;allen&#39; and passwd==&#39;123&#39;:
+                    print(&#39;登陆成功&#39;)
+                    res=func(*args,**kwargs)
+                    return res
+                else:
+                    print(&#39;登陆失败&#39;)
+            elif driver==&#39;ldap&#39;:
+                print(&#39;ldap&#39;)
+        return wrapper
+    return auth2
+
+@auth(driver=&#39;file&#39;)
+def foo(name):
+    print(name)
+foo(&#39;allen&#39;)
+</code></pre>
+
+<h2 id="toc_4">装饰器语法</h2>
+
+<pre><code>#被装饰函数的正上方，单独一行
+@deco1
+@deco2
+@deco3
+def foo():
+    pass
+foo=deco1(deco2(deco3(foo)))
+</code></pre>
+
+<h2 id="toc_5">装饰器补充：wraps</h2>
+
+<pre><code>from functools import wraps
+
+def deco(func):
+    @wraps(func) #加在最内层函数正上方
+    def wrapper(*args,**kwargs):
+        return func(*args,**kwargs)
+    return wrapper
+
+@deco
+def index():
+    &#39;&#39;&#39;哈哈哈哈&#39;&#39;&#39;
+    print(&#39;from index&#39;)
+
+print(index.__doc__)
+</code></pre>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -199,73 +310,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://allen-jie.github.io/2018/06/05/装饰器五部曲/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/04/测试。。。/" class="archive-article-date">
-  	<time datetime="2018-06-04T08:28:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/04/测试。。。/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">测试。。。</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/04/测试。。。/">测试。。。</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/04/hello-world/" class="archive-article-date">
-  	<time datetime="2018-06-03T16:34:39.972Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/04/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -288,8 +432,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

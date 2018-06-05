@@ -160,6 +160,170 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-装饰器五部曲" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/05/装饰器五部曲/">装饰器五部曲</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/05/装饰器五部曲/" class="archive-article-date">
+  	<time datetime="2018-06-05T07:05:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="toc_0">装饰器</h1>
+
+<p>装饰器就是闭包函数的一种应用场景</p>
+
+<h2 id="toc_1">为什么要用装饰器</h2>
+
+<p><code>开放封闭原则：对修改封闭，对扩展开放</code></p>
+
+<h2 id="toc_2">什么是装饰器</h2>
+
+<pre><code>装饰器-他人的器具，本身可以是任意可调用对象，被装饰者也可以是任意可调用对象。
+强调-装饰器的原则：1、不修改被装饰对象的源代码   2、不修改被装饰对象的调用方式
+装饰器的目标：在遵循1和2的前提下，为被装饰对象添加上新的功能
+</code></pre>
+
+<h2 id="toc_3">装饰器的使用</h2>
+
+<p>无参装饰器</p>
+
+<pre><code>import time
+def timmer(func):
+    def wrapper(*args,**kwargs):
+        start_time=time.time()
+        res=func(*args,**kwargs)
+        stop_time=time.time()
+        print(&#39;run time is %s&#39; %(stop_time-start_time))
+        return res
+    return wrapper
+
+@timmer
+def foo():
+    time.sleep(3)
+    print(&#39;from foo&#39;)
+foo()
+</code></pre>
+
+<p>有参装饰器</p>
+
+<pre><code>def auth(driver=&#39;file&#39;):
+    def auth2(func):
+        def wrapper(*args,**kwargs):
+            name=input(&quot;user: &quot;)
+            passwd=input(&#39;passwd: &#39;)
+
+            if driver == &#39;file&#39;:
+                if name==&#39;allen&#39; and passwd==&#39;123&#39;:
+                    print(&#39;登陆成功&#39;)
+                    res=func(*args,**kwargs)
+                    return res
+                else:
+                    print(&#39;登陆失败&#39;)
+            elif driver==&#39;ldap&#39;:
+                print(&#39;ldap&#39;)
+        return wrapper
+    return auth2
+
+@auth(driver=&#39;file&#39;)
+def foo(name):
+    print(name)
+foo(&#39;allen&#39;)
+</code></pre>
+
+<h2 id="toc_4">装饰器语法</h2>
+
+<pre><code>#被装饰函数的正上方，单独一行
+@deco1
+@deco2
+@deco3
+def foo():
+    pass
+foo=deco1(deco2(deco3(foo)))
+</code></pre>
+
+<h2 id="toc_5">装饰器补充：wraps</h2>
+
+<pre><code>from functools import wraps
+
+def deco(func):
+    @wraps(func) #加在最内层函数正上方
+    def wrapper(*args,**kwargs):
+        return func(*args,**kwargs)
+    return wrapper
+
+@deco
+def index():
+    &#39;&#39;&#39;哈哈哈哈&#39;&#39;&#39;
+    print(&#39;from index&#39;)
+
+print(index.__doc__)
+</code></pre>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Python,装饰器</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/05/装饰器五部曲/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-测试。。。" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -384,6 +548,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Python,装饰器</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
